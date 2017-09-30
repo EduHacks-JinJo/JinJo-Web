@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/home.scss'
+import { browserHistory } from 'react-router';
 
 class HomeView extends Component {
 
@@ -31,6 +32,7 @@ class HomeView extends Component {
         });
 
         //DO Api
+        this.props.login(email, password);
 
     }
 
@@ -61,12 +63,17 @@ class HomeView extends Component {
         });
 
         //DO API
-
+        this.props.signUp(email, password);
 
     }
 
     joinRoom = () => {
 
+        let roomId = document.getElementById('roomid').value;
+
+        if (roomId !== '') {
+            browserHistory.push('/room/' + roomId);
+        }
 
     }
 
@@ -86,7 +93,7 @@ class HomeView extends Component {
                             Join Room
                         </div>
                         <div className="input">
-                            <input placeholder="Room ID" />
+                            <input placeholder="Room ID" id="roomid" />
                         </div>
 
                         <div className="join" onClick={() => {this.joinRoom()}}>
@@ -104,7 +111,7 @@ class HomeView extends Component {
                         </div>
 
                         <div className="input">
-                            <input placeholder="Password" id="instructor-signin-password"/>
+                            <input type="password" placeholder="Password" id="instructor-signin-password"/>
                         </div>
 
                         <div className="join" onClick={() => {this.signIn()}}>
@@ -133,10 +140,10 @@ class HomeView extends Component {
                         </div>
 
                         <div className="input">
-                            <input placeholder="Password" id="instructor-signup-password"/>
+                            <input type="password" placeholder="Password" id="instructor-signup-password"/>
                         </div>
                         <div className="input">
-                            <input placeholder="Confirm Password"id="instructor-signup-confirmpassword" />
+                            <input type="password" placeholder="Confirm Password"id="instructor-signup-confirmpassword" />
                         </div>
 
                         <div className="join" onClick={() => {this.signUp()}}>

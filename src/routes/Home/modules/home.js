@@ -1,54 +1,88 @@
-// ------------------------------------
+import axios from 'axios';
+
+/// / ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
-export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const LOGIN = 'LOGIN'
+export const SIGNUP = 'SIGNUP'
 
-// ------------------------------------
-// Actions
-// ------------------------------------
-export function increment (value = 1) {
+
+// LOGIN
+const _loginHelper = (email, password) => {
+    console.log('emailpass ', email, password);
+    const request = axios.post('/auth/login', {
+        email,
+        password,
+    });
     return {
-        type    : COUNTER_INCREMENT,
-        payload : value
+        type: LOGIN,
+        payload: request,
     }
 }
+export const login = (email, password) => (dispatch) => {
+    dispatch(_loginHelper(email, password)).then(
+        (response) => {
+            console.log('THUNK RESPONSE => ', response);
+            if (response.payload.status === 200) {
+                dispatch({type: 'ADD_TOKEN', token: response.payload.data.token});
+                setTimeout(() => {
+                    browserHistory.push('/instructor');
+                }, 1000)
+            }
+        }
+    );
+}
 
-/*  This is a thunk, meaning it is a function that immediately
- returns a function for lazy evaluation. It is incredibly useful for
- creating async actions, especially when combined with redux-thunk! */
 
-export const doubleAsync = () => {
-    return (dispatch, getState) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                dispatch({
-                    type    : COUNTER_DOUBLE_ASYNC,
-                    payload : getState().counter
-                })
-                resolve()
-            }, 200)
-        })
+// SIGN UP
+const _signUpHelper = (email, password) => {
+    console.log('emailpass ', email, password);
+    const request = axios.post('/auth/login', {
+        email,
+        password,
+    });
+    return {
+        type: SIGNUP,
+        payload: request,
     }
 }
+export const signUp = (email, password) => (dispatch) => {
+    dispatch(_loginHelper(email, password)).then(
+        (response) => {
+            console.log('THUNK RESPONSE => ', response);
+            if (response.payload.status === 200) {
+                dispatch({type: 'ADD_TOKEN', token: response.payload.data.token});
+                setTimeout(() => {
+                    browserHistory.push('/instructor');
+                }, 1000)
+            }
+        }
+    );
+}
+
+
 
 export const actions = {
-    increment,
-    doubleAsync
+    login,
+    signUp
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-    [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+    [LOGIN] : (state, action) => {
+
+    },
+    [SIGNUP] : (state, action) => {
+
+    },
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = {}
 export default function counterReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type]
 
