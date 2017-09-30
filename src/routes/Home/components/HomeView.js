@@ -1,12 +1,44 @@
-import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
-import './HomeView.scss'
+import React, { Component } from 'react';
+import '../styles/home.scss'
 
-export const HomeView = () => (
-  <div>
-    <h4>Welcome!</h4>
-    <img alt='This is a duck, because Redux!' className='duck' src={DuckImage} />
-  </div>
-)
+class HomeView extends Component {
 
-export default HomeView
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+        return (
+            <div className="home">
+
+                <div className="title">
+                    JinJo
+                </div>
+
+                <div className="joinRoom">
+
+                    <div className="title">
+                        Join Room
+                    </div>
+                    <div className="input">
+                        <input placeholder="Room Id" />
+                    </div>
+
+                    <div className="join">
+                        Join Room
+                    </div>
+                </div>
+
+                <div className="joinProf">
+                    <div className="button">
+                        I'm an Instructor
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+}
+
+export default HomeView;

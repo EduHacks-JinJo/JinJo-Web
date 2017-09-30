@@ -88,7 +88,7 @@ config.module.rules.push({
   }],
 })
 
-// Styles
+// styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
   filename: 'styles/[name].[contenthash].css',
