@@ -8,8 +8,7 @@ export const GET_COURSES = 'GET_COURSES';
 
 
 export const getCourses = () => {
-    const request = axios.get('/room/create', {
-    });
+    const request = axios.get('/classrooms');
     return {
         type: GET_COURSES,
         payload: request,

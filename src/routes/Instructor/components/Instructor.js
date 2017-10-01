@@ -56,11 +56,11 @@ class Instructor extends Component {
                         Courses
                     </div>
 
-                    <Course course="CPSC 210"/>
+                    <Course createRoom={this.props.createRoom} course="CPSC 210"/>
 
-                    <Course course="CPSC 310" />
+                    <Course createRoom={this.props.createRoom} course="CPSC 310" />
 
-                    <Course course="CPSC 110"/>
+                    <Course createRoom={this.props.createRoom} course="CPSC 110"/>
 
                     {
                         this.props.courses.forEach(course =>
