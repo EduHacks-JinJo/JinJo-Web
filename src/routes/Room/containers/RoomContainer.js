@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getPosts, askQuestion, likeQuestion, unlikeQuestion } from '../modules/room'
+import { getQuestions, askQuestion, likeQuestion, unlikeQuestion } from '../modules/room'
 
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
@@ -13,7 +13,7 @@ import Room from '../components/Room'
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-    getPosts : (roomId) => getPosts(roomId),
+    getQuestions : (roomId) => getQuestions(roomId),
     likeQuestion : (questionId) => likeQuestion(questionId),
     unlikeQuestion: (questionId) => unlikeQuestion(questionId),
     askQuestion: (question, roomId) => askQuestion(question, roomId),

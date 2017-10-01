@@ -7,10 +7,13 @@ export const GET_POSTS = 'GET_POSTS';
 export const SET_ROOM_ID = 'SET_ROOM_ID';
 export const LIKE_QUESTION = 'LIKE_QUESTION';
 export const UNLIKE_QUESTION = 'UNLIKE_QUESTION';
+export const ASK_QUESTION = 'ASK_QUESTION';
 
 // LOGIN
 const _getQuestionsHelper = (roomId) => {
-    const request = axios.get('/room/' + roomId + '/getPosts');
+    const request = axios.post('/questions', {
+        roomID: roomId,
+    });
     return {
         type: GET_POSTS,
         payload: request,
@@ -35,7 +38,9 @@ export const setRoomId = (roomId) => {
 }
 
 const _likeQuestion = (questionId) => {
-    const request = axios.get('/question/' + questionId + '/like');
+    const request = axios.post('/upvote', {
+        id: questionId,
+    });
     return {
         type: LIKE_QUESTION,
         payload: request,
@@ -47,16 +52,18 @@ export const likeQuestion = (questionId) => (dispatch) => {
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
-
+                //GET QUESTIONS
             }
         }
     );
 }
 
 const _unlikeQuestion = (questionId) => {
-    const request = axios.get('/question/' + questionId + '/unlike');
+    const request = axios.get('/downvote', {
+        id: questionId,
+    });
     return {
-        type: LIKE_QUESTION,
+        type: UNLIKE_QUESTION,
         payload: request,
     }
 }
@@ -66,7 +73,7 @@ export const unlikeQuestion = (questionId) => (dispatch) => {
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
-
+                //GET QUESTIONS
             }
         }
     );
@@ -74,12 +81,12 @@ export const unlikeQuestion = (questionId) => (dispatch) => {
 
 
 const _askQuestion = (question, roomId) => {
-    const request = axios.post('/room/question', {
+    const request = axios.post('/question', {
         question: question,
-        roomId: roomId
+        roomID: roomId
     });
     return {
-        type: LIKE_QUESTION,
+        type: ASK_QUESTION,
         payload: request,
     }
 }
@@ -89,8 +96,7 @@ export const askQuestion = (question, roomId) => (dispatch) => {
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
-
-
+                dispatch(getQuestions(roomId));
             }
         }
     );
@@ -112,7 +118,7 @@ const ACTION_HANDLERS = {
     [GET_POSTS] : (state, action) => {
         return {
             ...state,
-            questions: action.payload.data.posts,
+            questions: action.payload.data,
         }
     },
     [SET_ROOM_ID] : (state, action) => {

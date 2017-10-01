@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { createRoom } from '../modules/Instructor'
+import { createRoom, getCourses, getClassrooms } from '../modules/Instructor'
 
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
@@ -13,12 +13,15 @@ import Instructor from '../components/Instructor'
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-    createRoom: (classname, coursename) => createRoom(classname, coursename),
+    createRoom: (coursename, classname) => createRoom(coursename, classname),
+    getCourses: () => getCourses(),
+    getClassrooms: (courseID) => getClassrooms(courseID),
 }
 
 const mapStateToProps = (state) => {
     return ({
-        courses: state.instructor.courses
+        courses: state.instructor.courses,
+        classrooms: state.instructor.classrooms,
     });
 };
 

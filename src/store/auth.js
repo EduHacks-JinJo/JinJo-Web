@@ -17,6 +17,9 @@ export default (state = initialState, action) => {
             }
 
         case ADD_TOKEN:
+            const cookies = new Cookies();
+            cookies.set('jinjo_token', action.token, { maxAge: 100000, path: '/' });
+
             return {
                 ...state,
                 token: action.token

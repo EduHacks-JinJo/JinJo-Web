@@ -13,6 +13,10 @@ class Room extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getQuestions(this.props.roomId);
+    }
+
     render() {
         console.log(this.props);
         return (
@@ -37,9 +41,8 @@ class Room extends Component {
                     }}/>
 
                     {
-                        this.props.questions.map(post => {
-
-                            <Post post={post} />
+                        this.props.questions.map(question => {
+                            <Post post={question} likeQuestion={() => {this.props.likeQuestion(question.questionID)}} unlikeQuestion={() => {this.props.unlikeQuestion(question.questionID)}} />
                         })
                     }
 

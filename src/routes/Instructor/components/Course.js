@@ -15,41 +15,60 @@ class Course extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getClassrooms(this.props.courseName);
+    }
+
     createRoom = () => {
+        let coursename = document.getElementById('coursename').value;
         let roomname = document.getElementById('roomname').value;
-        this.props.createRoom(this.props.course, roomname);
+        this.props.createRoom(coursename, roomname);
     }
 
     render() {
+        console.log('classrooms', this.props.classrooms);
+
         return (
             <div className="course" onClick={() => {this.setState(this.state.createNew ? {} : {expanded: !this.state.expanded})}}>
                 <div className="courseTitle">
-                    {this.props.course}
+                    {this.props.courseName}
                 </div>
                 {
                     this.state.expanded === true ?
                         <div className="classlist">
 
-                            <div className="class" onClick={(e) => {e.stopPropagation(); browserHistory.push('/room/' + 101)}}>
-                                101
-                            </div>
+                            {/*<div className="class" onClick={(e) => {e.stopPropagation(); browserHistory.push('/room/' + 101)}}>*/}
+                                {/*101*/}
+                            {/*</div>*/}
 
-                            <div className="class" onClick={(e) => {e.stopPropagation(); browserHistory.push('/room/' + 101)}}>
-                                102
-                            </div>
+                            {
+                                this.props.classrooms ?
+                                    this.props.classrooms.map(room =>
+                                        <div className="class" onClick={(e) => {e.stopPropagation(); browserHistory.push('/room/' + room.roomID)}}>
+                                            {
+                                                room.classname ?
+                                                    room.classname
+                                                    :
+                                                    room.roomID
+                                            }
+                                        </div>
+                                    )
+                                    :
+                                    null
+                            }
 
                             {
                                 this.state.createNew ?
                                     <div className="createCourse">
                                         <div className="courseName">
                                             Course Name
-                                            <input id='coursename' defaultValue={this.props.course} placeholder="Course Name" onFocus={(e) => {e.stopPropagation()}}/>
+                                            <input id='coursename' defaultValue={this.props.courseName} placeholder="Course Name" onFocus={(e) => {e.stopPropagation()}}/>
                                         </div>
                                         <div className="className">
                                             Room Name
                                             <input id='roomname' placeholder="Room Name" onFocus={(e) => {e.stopPropagation(); this.createRoom()}}/>
                                         </div>
-                                        <div className="addCourse" onClick={(e) => {this.setState({createNew: false})}}>
+                                        <div className="addCourse" onClick={(e) => {this.createRoom(); this.setState({createNew: false})}}>
                                             Create Room
                                         </div>
                                         <div className="addCourse" onClick={(e) => {this.setState({createNew: false})}}>

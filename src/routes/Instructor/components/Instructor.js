@@ -12,13 +12,20 @@ class Instructor extends Component {
         }
     }
 
-    createRoom = (classname, coursename) => {
-        this.props.createRoom(classname, coursename);
+    componentDidMount() {
+        this.props.getCourses();
+    }
+
+    createRoom = () => {
+        let className = document.getElementById('classname').value;
+        let courseName = document.getElementById('coursename').value;
+
+        this.props.createRoom(className, courseName);
     }
 
 
-
     render() {
+        console.log('instructo render', this.props.courses)
         return (
             <div className="instructor">
 
@@ -37,7 +44,7 @@ class Instructor extends Component {
                                 Class Name
                                 <input id='classname' placeholder="Class Name" />
                             </div>
-                            <div className="addCourse">
+                            <div className="addCourse" onClick={() => {this.createRoom()}} >
                                 Add Course
                             </div>
                             <div className="addCourse" onClick={() => {this.setState({createCourse: false})}}>
@@ -56,17 +63,9 @@ class Instructor extends Component {
                         Courses
                     </div>
 
-                    <Course createRoom={this.props.createRoom} course="CPSC 210"/>
-
-                    <Course createRoom={this.props.createRoom} course="CPSC 310" />
-
-                    <Course createRoom={this.props.createRoom} course="CPSC 110"/>
-
                     {
-                        this.props.courses.forEach(course =>
-                            <div className="course">
-                                {course.name}
-                            </div>
+                        this.props.courses.map(course =>
+                            <Course key={course} getClassrooms={(courseID) => {this.props.getClassrooms(courseID)}} createRoom={this.props.createRoom} courseName={course} classrooms={this.props.classrooms[course]}/>
                         )
                     }
 

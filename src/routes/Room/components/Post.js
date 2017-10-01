@@ -14,11 +14,11 @@ class Post extends Component {
     }
 
     like = () => {
-        this.props.likePost(this.props.question.questionId);
+        this.props.likeQuestion(this.props.question.questionId);
     }
 
     unlike = () => {
-        this.props.unlikePost(this.props.question.questionId);
+        this.props.unlikeQuestion(this.props.question.questionId);
     }
 
     handleLikeClick = () => {
