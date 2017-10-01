@@ -1,0 +1,31 @@
+.room {
+
+  color: black;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: #00aaff;
+
+  padding-top: 2rem;
+
+}
+
+.roomTitle {
+  font-size: 4rem;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.postsList {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 400px;
+  margin: auto;
+}
