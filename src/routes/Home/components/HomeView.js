@@ -168,8 +168,13 @@ class HomeView extends Component {
                 </div>
 
                 <div className="joinProf">
-                    <div className="button" onClick={() => {this.setState({view: 'instructorSignIn'})}}>
-                        I'm an Instructor
+                    <div className="button" onClick={() => {this.setState({view: this.state.view === 'student' ? 'instructorSignIn' : 'student'})}}>
+                        {
+                            this.state.view === 'student' ?
+                                "I'm an Instructor"
+                                :
+                                "I'm a Student"
+                        }
                     </div>
                 </div>
 
