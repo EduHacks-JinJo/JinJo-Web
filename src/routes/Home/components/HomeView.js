@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/home.scss'
 import { browserHistory } from 'react-router';
+import logo from '../assets/logotrans.png';
 
 class HomeView extends Component {
 
@@ -81,7 +82,7 @@ class HomeView extends Component {
             <div className="home">
 
                 <div className="title">
-                    JinJo
+                    <img src={logo} />
                 </div>
 
                 <div className="joinRoom">
