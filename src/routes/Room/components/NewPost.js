@@ -30,7 +30,7 @@ class NewPost extends Component {
                     <input id='newquestion' type="text" placeholder="Type your question..."/>
                 </div>
                 <div className="button" onClick={() => this.askQuestion()}>
-                    Ask!
+                    ASK
                 </div>
 
             </div>
