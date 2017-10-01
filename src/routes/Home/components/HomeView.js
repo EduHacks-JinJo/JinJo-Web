@@ -6,13 +6,11 @@ class HomeView extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             view: 'student',
             error: null,
         }
     }
-
 
     signIn = () => {
 
@@ -164,6 +162,7 @@ class HomeView extends Component {
                                     null
                             }
                         </div>
+
                     </div>
                 </div>
 

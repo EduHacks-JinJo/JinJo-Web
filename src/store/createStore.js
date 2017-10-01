@@ -31,7 +31,7 @@ const createStore = (initialState = {}) => {
   // Add token to storeState if it exists.
   const cookies = new Cookies();
   let storeState = initialState;
-  const token = cookies.get('whoshere_token');
+  const token = cookies.get('jinjo_token');
   if (token) {
       storeState = {
           auth: {
@@ -69,13 +69,13 @@ const createStore = (initialState = {}) => {
     })
   }
 
-  const URL = 'http://localhost:8082/'; // LOCAL SERVER
+  const URL = 'https://jinjo.herokuapp.com/'; // LOCAL SERVER
   axios.defaults.baseURL = URL;
   function listener() {
       const state = store.getState();
       // console.log('listener ', cookies.get('vrify_webapp_token'), (!cookies.get('vrify_webapp_token') && axios.defaults.headers.common.token !== null && axios.defaults.headers.common.token !== undefined ));
       // Token has been removed, also remove it from axios and the store.
-      if (!cookies.get('whoshere_token') && axios.defaults.headers.common.token !== null && axios.defaults.headers.common.token !== undefined) {
+      if (!cookies.get('jinjo_token') && axios.defaults.headers.common.token !== null && axios.defaults.headers.common.token !== undefined) {
           axios.defaults.headers.common.token = null;
           // store.dispatch({ type: 'REMOVE_TOKEN' });
       } else if (state.auth && state.auth.token) {

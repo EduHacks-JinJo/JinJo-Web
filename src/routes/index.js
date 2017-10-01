@@ -2,6 +2,7 @@
 import CoreLayout from '../layouts/PageLayout/PageLayout';
 import Home from './Home';
 import Room from './Room';
+import Instructor from './Instructor';
 import CounterRoute from './Counter';
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -13,7 +14,8 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     CounterRoute(store),
-      Room(store),
+    Room(store),
+    Instructor(store),
   ]
 })
 

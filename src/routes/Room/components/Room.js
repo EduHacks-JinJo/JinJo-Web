@@ -19,9 +19,7 @@ class Room extends Component {
             <div className="room">
 
                 <div className="roomTitle">
-
                     {this.props.roomId}
-
                 </div>
 
                 <div className="postsList">

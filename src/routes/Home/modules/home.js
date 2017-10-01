@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { browserHistory } from 'react-router';
 /// / ------------------------------------
 // Constants
 // ------------------------------------
@@ -37,7 +37,7 @@ export const login = (email, password) => (dispatch) => {
 // SIGN UP
 const _signUpHelper = (email, password) => {
     console.log('emailpass ', email, password);
-    const request = axios.post('/auth/login', {
+    const request = axios.post('/auth/create', {
         email,
         password,
     });
@@ -46,8 +46,9 @@ const _signUpHelper = (email, password) => {
         payload: request,
     }
 }
+
 export const signUp = (email, password) => (dispatch) => {
-    dispatch(_loginHelper(email, password)).then(
+    dispatch(_signUpHelper(email, password)).then(
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
@@ -59,8 +60,6 @@ export const signUp = (email, password) => (dispatch) => {
         }
     );
 }
-
-
 
 export const actions = {
     login,
