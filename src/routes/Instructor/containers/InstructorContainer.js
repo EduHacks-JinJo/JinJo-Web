@@ -13,7 +13,7 @@ import Instructor from '../components/Instructor'
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-    createRoom: (coursename, classname) => createRoom(coursename, classname),
+    createRoom: (coursename, classname, courseID = null) => createRoom(coursename, classname, courseID),
     getCourses: () => getCourses(),
     getClassrooms: (courseID) => getClassrooms(courseID),
 }

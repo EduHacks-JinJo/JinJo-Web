@@ -20,7 +20,7 @@ class Instructor extends Component {
         let className = document.getElementById('classname').value;
         let courseName = document.getElementById('coursename').value;
 
-        this.props.createRoom(className, courseName);
+        this.props.createRoom(courseName, className);
     }
 
 

@@ -38,12 +38,16 @@ const _createRoom = (coursename, classname) => {
     }
 }
 
-export const createRoom = (coursename, classname) => (dispatch) => {
+export const createRoom = (coursename, classname, courseID) => (dispatch) => {
     dispatch(_createRoom(coursename, classname)).then(
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
-                dispatch(getCourses(coursename));
+                dispatch(getCourses(coursename)).then(() => {
+                    if (courseID !== null) {
+                        dispatch(getClassrooms(courseID))
+                    }
+                });
             }
         }
     );

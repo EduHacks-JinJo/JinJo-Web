@@ -14,8 +14,8 @@ import Room from '../components/Room'
 
 const mapDispatchToProps = {
     getQuestions : (roomId) => getQuestions(roomId),
-    likeQuestion : (questionId) => likeQuestion(questionId),
-    unlikeQuestion: (questionId) => unlikeQuestion(questionId),
+    likeQuestion : (questionId, roomId) => likeQuestion(questionId, roomId),
+    unlikeQuestion: (questionId, roomId) => unlikeQuestion(questionId, roomId),
     askQuestion: (question, roomId) => askQuestion(question, roomId),
 }
 

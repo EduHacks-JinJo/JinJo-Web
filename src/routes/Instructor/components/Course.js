@@ -21,8 +21,12 @@ class Course extends Component {
 
     createRoom = () => {
         let coursename = document.getElementById('coursename').value;
-        let roomname = document.getElementById('roomname').value;
-        this.props.createRoom(coursename, roomname);
+        let classname = document.getElementById('roomname').value;
+
+        if (coursename === '' || classname === '') {
+            return;
+        }
+        this.props.createRoom(coursename, classname, this.props.courseName);
     }
 
     render() {

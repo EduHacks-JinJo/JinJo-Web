@@ -47,19 +47,20 @@ const _likeQuestion = (questionId) => {
     }
 }
 
-export const likeQuestion = (questionId) => (dispatch) => {
+export const likeQuestion = (questionId, roomId) => (dispatch) => {
     dispatch(_likeQuestion(questionId)).then(
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
                 //GET QUESTIONS
+                dispatch(getQuestions(roomId));
             }
         }
     );
 }
 
 const _unlikeQuestion = (questionId) => {
-    const request = axios.get('/downvote', {
+    const request = axios.post('/downvote', {
         id: questionId,
     });
     return {
@@ -68,12 +69,13 @@ const _unlikeQuestion = (questionId) => {
     }
 }
 
-export const unlikeQuestion = (questionId) => (dispatch) => {
+export const unlikeQuestion = (questionId, roomId) => (dispatch) => {
     dispatch(_unlikeQuestion(questionId)).then(
         (response) => {
             console.log('THUNK RESPONSE => ', response);
             if (response.payload.status === 200) {
                 //GET QUESTIONS
+                dispatch(getQuestions(roomId));
             }
         }
     );

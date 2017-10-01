@@ -15,6 +15,11 @@ class Room extends Component {
 
     componentDidMount() {
         this.props.getQuestions(this.props.roomId);
+
+        setInterval(() => {
+            this.props.getQuestions(this.props.roomId);
+        },5000);
+
     }
 
     render() {
@@ -32,7 +37,7 @@ class Room extends Component {
 
                     {
                         this.props.questions.reverse().map(q =>
-                            <Post key={q._id} question={q} likeQuestion={() => {this.props.likeQuestion(q._id)}} unlikeQuestion={() => {this.props.unlikeQuestion(q._id)}} />
+                            <Post key={q._id} question={q} likeQuestion={() => {this.props.likeQuestion(q._id, this.props.roomId)}} unlikeQuestion={() => {this.props.unlikeQuestion(q._id, this.props.roomId)}} />
                         )
                     }
 
