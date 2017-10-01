@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import '../styles/instructor.scss'
 import { browserHistory } from 'react-router';
+import Course from './Course';
 
 class Instructor extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            createCourse: false,
         }
     }
 
     createRoom = (classname, coursename) => {
         this.props.createRoom(classname, coursename);
     }
+
+
 
     render() {
         return (
@@ -22,10 +26,29 @@ class Instructor extends Component {
                     JinJo
                 </div>
 
-
-                <div className="createCourse">
-                    Create Course
-                </div>
+                {
+                    this.state.createCourse === true ?
+                        <div className="createCourse">
+                            <div className="courseName">
+                                Course Name
+                                <input id='coursename' placeholder="Course Name" />
+                            </div>
+                            <div className="className">
+                                Class Name
+                                <input id='classname' placeholder="Class Name" />
+                            </div>
+                            <div className="addCourse">
+                                Add Course
+                            </div>
+                            <div className="addCourse" onClick={() => {this.setState({createCourse: false})}}>
+                                Cancel
+                            </div>
+                        </div>
+                        :
+                        <div className="createCourse" onClick={() => {this.setState({createCourse: true})}}>
+                            Create Course
+                        </div>
+                }
 
                 <div className="courses">
 
@@ -33,9 +56,11 @@ class Instructor extends Component {
                         Courses
                     </div>
 
-                    <div className="course">
-                        CPSC 210
-                    </div>
+                    <Course course="CPSC 210"/>
+
+                    <Course course="CPSC 310" />
+
+                    <Course course="CPSC 110"/>
 
                     {
                         this.props.courses.forEach(course =>
