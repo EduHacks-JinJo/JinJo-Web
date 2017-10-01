@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getPosts } from '../modules/room'
+import { getPosts, askQuestion, likeQuestion, unlikeQuestion } from '../modules/room'
 
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
@@ -14,6 +14,9 @@ import Room from '../components/Room'
 
 const mapDispatchToProps = {
     getPosts : (roomId) => getPosts(roomId),
+    likeQuestion : (questionId) => likeQuestion(questionId),
+    unlikeQuestion: (questionId) => unlikeQuestion(questionId),
+    askQuestion: (question, roomId) => askQuestion(question, roomId),
 }
 
 const mapStateToProps = (state) => {

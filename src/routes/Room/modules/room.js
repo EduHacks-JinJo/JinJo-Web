@@ -73,11 +73,36 @@ export const unlikeQuestion = (questionId) => (dispatch) => {
 }
 
 
+const _askQuestion = (question, roomId) => {
+    const request = axios.post('/room/question', {
+        question: question,
+        roomId: roomId
+    });
+    return {
+        type: LIKE_QUESTION,
+        payload: request,
+    }
+}
+
+export const askQuestion = (question, roomId) => (dispatch) => {
+    dispatch(_askQuestion(question, roomId)).then(
+        (response) => {
+            console.log('THUNK RESPONSE => ', response);
+            if (response.payload.status === 200) {
+
+
+            }
+        }
+    );
+}
+
+
 export const actions = {
     getQuestions,
     setRoomId,
     likeQuestion,
     unlikeQuestion,
+    askQuestion,
 }
 
 // ------------------------------------

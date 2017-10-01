@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/newPost.scss'
 import { browserHistory } from 'react-router';
 
-class Post extends Component {
+class NewPost extends Component {
 
     constructor(props) {
         super(props);
@@ -11,8 +11,12 @@ class Post extends Component {
         }
     }
 
-    like = () => {
-        this.props.likePost(this.props.question.questionId);
+    askQuestion = () => {
+        let question = document.getElementById('newquestion').value;
+        if (question !== '') {
+            this.props.askQuestion(question);
+            document.getElementById('newquestion').value = '';
+        }
     }
 
     render() {
@@ -20,7 +24,13 @@ class Post extends Component {
             <div className="newPost">
 
                 <div className="title">
-                    <input placeholder="Type your question..."/>
+                    Ask your Question:
+                </div>
+                <div className="input">
+                    <input id='newquestion' type="text" placeholder="Type your question..."/>
+                </div>
+                <div className="button" onClick={() => this.askQuestion()}>
+                    Ask!
                 </div>
 
             </div>
@@ -28,4 +38,4 @@ class Post extends Component {
     }
 }
 
-export default Post;
+export default NewPost;

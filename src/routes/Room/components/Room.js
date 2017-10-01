@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/room.scss'
 import { browserHistory } from 'react-router';
 import Post from './Post';
+import NewPost from './NewPost';
 
 class Room extends Component {
 
@@ -25,7 +26,7 @@ class Room extends Component {
 
                 <div className="postsList">
 
-                    <NewPost />
+                    <NewPost askQuestion={(question) => {this.props.askQuestion(question, this.props.roomId)}} />
 
                     <Post question={{
                         question: 'Is register %rax valid?',

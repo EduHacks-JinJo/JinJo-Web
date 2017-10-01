@@ -17,6 +17,20 @@ class Post extends Component {
         this.props.likePost(this.props.question.questionId);
     }
 
+    unlike = () => {
+        this.props.unlikePost(this.props.question.questionId);
+    }
+
+    handleLikeClick = () => {
+        this.setState({heart: !this.state.heart}, function() {
+            if (this.state.heart) {
+                this.like();
+            } else {
+                this.unlike();
+            }
+        });
+    }
+
     render() {
         return (
             <div className="post">
@@ -25,7 +39,7 @@ class Post extends Component {
                     {this.props.question.question}
                 </div>
 
-                <div className="like" onClick={() => {this.setState({heart: !this.state.heart})}}>
+                <div className="like" onClick={() => {this.handleLikeClick()}}>
                     <img src={this.state.heart ? heartRed : heart} />
                     <div className="likeCount">
                         {this.props.question.likes}
