@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 import Post from './Post';
 import NewPost from './NewPost';
 
+// const socket = require('socket.io-client')('https://jinjo.herokuapp.com');
+
 class Room extends Component {
 
     constructor(props) {
@@ -11,7 +13,14 @@ class Room extends Component {
         this.state = {
 
         }
+        // socket.on('questions', this.update);
     }
+
+    // update = (questions) => {
+    //     // console.log('update', questions);
+    //     this.props.setQuestions(questions);
+    // };
+
 
     componentDidMount() {
         this.props.getQuestions(this.props.roomId);

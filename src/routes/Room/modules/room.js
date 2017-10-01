@@ -8,8 +8,18 @@ export const SET_ROOM_ID = 'SET_ROOM_ID';
 export const LIKE_QUESTION = 'LIKE_QUESTION';
 export const UNLIKE_QUESTION = 'UNLIKE_QUESTION';
 export const ASK_QUESTION = 'ASK_QUESTION';
+export const SET_QUESTIONS = 'SET_QUESTIONS';
 
 // LOGIN
+
+export const setQuestions = (questions) => {
+    return {
+        type: SET_QUESTIONS,
+        questions: questions,
+    }
+}
+
+
 const _getQuestionsHelper = (roomId) => {
     const request = axios.post('/questions', {
         roomID: roomId,
@@ -111,6 +121,7 @@ export const actions = {
     likeQuestion,
     unlikeQuestion,
     askQuestion,
+    setQuestions,
 }
 
 // ------------------------------------
@@ -121,6 +132,12 @@ const ACTION_HANDLERS = {
         return {
             ...state,
             questions: action.payload.data,
+        }
+    },
+    [SET_QUESTIONS] : (state, action) => {
+        return {
+            ...state,
+            questions: action.questions,
         }
     },
     [SET_ROOM_ID] : (state, action) => {
