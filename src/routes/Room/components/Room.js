@@ -30,20 +30,10 @@ class Room extends Component {
 
                     <NewPost askQuestion={(question) => {this.props.askQuestion(question, this.props.roomId)}} />
 
-                    <Post question={{
-                        question: 'Is register %rax valid?',
-                        likes: 10,
-                    }}/>
-
-                    <Post question={{
-                        question: 'What is the CPU Pipeline?',
-                        likes: 12,
-                    }}/>
-
                     {
-                        this.props.questions.map(question => {
-                            <Post post={question} likeQuestion={() => {this.props.likeQuestion(question.questionID)}} unlikeQuestion={() => {this.props.unlikeQuestion(question.questionID)}} />
-                        })
+                        this.props.questions.reverse().map(q =>
+                            <Post key={q._id} question={q} likeQuestion={() => {this.props.likeQuestion(q._id)}} unlikeQuestion={() => {this.props.unlikeQuestion(q._id)}} />
+                        )
                     }
 
                 </div>

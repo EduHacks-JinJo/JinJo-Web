@@ -42,7 +42,7 @@ class Post extends Component {
                 <div className="like" onClick={() => {this.handleLikeClick()}}>
                     <img src={this.state.heart ? heartRed : heart} />
                     <div className="likeCount">
-                        {this.props.question.likes}
+                        {this.props.question.upvotes}
                     </div>
                 </div>
 
