@@ -10,7 +10,8 @@ class Course extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            createNew: false
         }
     }
 
@@ -24,13 +25,37 @@ class Course extends Component {
                     this.state.expanded === true ?
                         <div className="classlist">
 
-                            <div className="class" onClick={(e) => {e.stopPropagation(); this.setState({expanded: false})}}>
+                            <div className="class" onClick={(e) => {e.stopPropagation(); this.setState({createNew: false})}}>
                                 101
                             </div>
 
-                            <div className="class">
+                            <div className="class" onClick={(e) => {e.stopPropagation(); this.setState({createNew: false})}}>
                                 102
                             </div>
+
+                            {
+                                this.state.createNew ?
+                                    <div className="createCourse">
+                                        <div className="courseName">
+                                            Course Name
+                                            <input id='coursename' default={this.props.course} placeholder="Course Name" onFocus={(e) => {e.stopPropagation()}}/>
+                                        </div>
+                                        <div className="className">
+                                            Class Name
+                                            <input id='classname' placeholder="Class Name" onFocus={(e) => {e.stopPropagation()}}/>
+                                        </div>
+                                        <div className="addCourse" onClick={(e) => {e.stopPropagation(); this.setState({createNew: false})}}>
+                                            Add Course
+                                        </div>
+                                        <div className="addCourse" onClick={(e) => {e.stopPropagation(); this.setState({createNew: false})}}>
+                                            Cancel
+                                        </div>
+                                    </div>
+                                    :
+                                    <div className="createNew" onClick={(e) => {e.stopPropagation(); this.setState({createNew: true})}}>
+                                        New Class
+                                    </div>
+                            }
 
                         </div>
                         :

@@ -27,7 +27,7 @@ export const login = (email, password) => (dispatch) => {
                 dispatch({type: 'ADD_TOKEN', token: response.payload.data.token});
                 setTimeout(() => {
                     browserHistory.push('/instructor');
-                }, 1000)
+                }, 200)
             }
         }
     );
@@ -55,7 +55,7 @@ export const signUp = (email, password) => (dispatch) => {
                 dispatch({type: 'ADD_TOKEN', token: response.payload.data.token});
                 setTimeout(() => {
                     browserHistory.push('/instructor');
-                }, 1000)
+                }, 200)
             }
         }
     );
