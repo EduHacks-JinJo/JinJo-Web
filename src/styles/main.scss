@@ -12,10 +12,18 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Raleway', sans-serif;
+  color: #3D3D3D;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+.button {
+  background-color: #6BBAB8;
+  color: #FFFFFF;
+  border-color: transparent;
 }
